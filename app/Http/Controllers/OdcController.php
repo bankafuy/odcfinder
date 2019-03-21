@@ -26,7 +26,6 @@ class OdcController extends Controller
 
     public function add(Request $request)
     {
-//        var_dump($request->json()->all());
         $odcModel = OdcModel::create($request->json()->all());
 
         return response()->json($odcModel, 201);
@@ -34,7 +33,6 @@ class OdcController extends Controller
 
     public function put($id, Request $request)
     {
-//        $odcModel = OdcModel::findOrFail($id);
         $odcModel = OdcModel::where('id_odc', '=', $id)->first();
         $odcModel->update($request->json()->all());
 

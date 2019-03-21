@@ -24,9 +24,9 @@ $router->group(['prefix' => 'odc'], function() use($router) {
 });
 
 $router->group(['prefix' => 'users'], function() use($router) {
-    $router->get('', 'OdcController@all');
-    $router->get('{id}', 'OdcController@get');
-    $router->post('', 'OdcController@add');
-    $router->put('{id}', 'OdcController@put');
-    $router->delete('{id}', 'OdcController@remove');
+    $router->get('', 'UserController@all');
+    $router->get('{id}', 'UserController@get');
+    $router->post('', 'UserController@add');
+    $router->put('{id}', 'UserController@put');
+    $router->delete('{id}', 'UserController@remove');
 });

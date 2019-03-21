@@ -12,6 +12,6 @@ class UserModel extends Model {
 
     public $timestamps = false;
 
-    public $primaryKey = "id_odc";
+    public $primaryKey = "id";
 
 }

@@ -59,13 +59,25 @@ class UserController extends Controller
         return response('Deleted Successfully', 200);
     }
 
-    public function changePassword($id, Request $request)
+    public function changePassword(Request $request)
     {
-        $userModel = UserModel::where('id', '=', $id)->first();
-        $userModel->photo = $request->json()->photo;
-        $userModel->save();
+        $userLogin = $request->json()->all();
+        $username = $userLogin['username'];
+        $password = md5($userLogin['password']);
+        $newPassword = md5($userLogin['newPassword']);
 
-        return response()->json($userModel, 200);
+        $userModel = UserModel::where('username', '=', $username)
+            ->where('password', '=', $password)
+            ->first();
+
+        if($userModel == null) {
+            return response()->json('invalid credential', 400);
+        } else {
+            $userModel['password'] = $newPassword;
+            $userModel->save();
+
+            return response()->json('change password succeed', 200);
+        }
     }
 
     public function login(Request $request)

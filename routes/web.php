@@ -20,6 +20,7 @@ $router->get('/auto', function () use ($router) {
 });
 
 $router->post('/login', 'UserController@login');
+$router->post('/change-password', 'UserController@changePassword');
 
 $router->group(['prefix' => 'odc'], function() use($router) {
     $router->get('', 'OdcController@all');

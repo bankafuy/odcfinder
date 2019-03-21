@@ -59,13 +59,29 @@ class UserController extends Controller
         return response('Deleted Successfully', 200);
     }
 
-    public function savePhoto($id, Request $request)
+    public function changePassword($id, Request $request)
     {
         $userModel = UserModel::where('id', '=', $id)->first();
         $userModel->photo = $request->json()->photo;
         $userModel->save();
 
         return response()->json($userModel, 200);
+    }
+
+    public function login(Request $request)
+    {
+        $userLogin = $request->json()->all();
+        $username = $userLogin['username'];
+        $password = md5($userLogin['password']);
+        $userModel = UserModel::where('username', '=', $username)
+            ->where('password', '=', $password)
+            ->first();
+
+        if($userModel == null) {
+            return response()->json('invalid credential', 400);
+        } else {
+            return response()->json($userModel, 200);
+        }
     }
 
 }

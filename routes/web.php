@@ -19,6 +19,8 @@ $router->get('/auto', function () use ($router) {
     return "Coba deploy automatically";
 });
 
+$router->post('/login', 'UserController@login');
+
 $router->group(['prefix' => 'odc'], function() use($router) {
     $router->get('', 'OdcController@all');
     $router->get('{id}', 'OdcController@get');

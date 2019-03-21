@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 class OdcController extends Controller
 {
 
-    public function all()
+    public function all(Request $request)
     {
-        return response()->json(OdcModel::all());
+        $paramName = strtolower($request->get('name'));
+
+        if($paramName != null) {
+            $listUsers = OdcModel::whereRaw("LOWER(`nama_odc`) like '%" . $paramName . "%' ")->get();
+            return response()->json($listUsers);
+        } else {
+            return response()->json(OdcModel::all());
+        }
     }
 
     public function get($id)

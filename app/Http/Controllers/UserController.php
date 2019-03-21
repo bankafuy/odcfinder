@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
-    public function all()
+    public function all(Request $request)
     {
-        return response()->json(UserModel::all());
+        $paramName = strtolower($request->get('name'));
+
+        if($paramName != null) {
+            $listUsers = UserModel::whereRaw("LOWER(`nama`) like '%" . $paramName . "%' ")->get();
+            return response()->json($listUsers);
+        } else {
+            return response()->json(UserModel::all());
+        }
     }
 
     public function get($id)

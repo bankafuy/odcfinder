@@ -15,6 +15,10 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+$router->get('/auto', function () use ($router) {
+    return "Coba deploy automatically";
+});
+
 $router->group(['prefix' => 'odc'], function() use($router) {
     $router->get('', 'OdcController@all');
     $router->get('{id}', 'OdcController@get');

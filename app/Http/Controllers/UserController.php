@@ -37,15 +37,19 @@ class UserController extends Controller
 
     public function add(Request $request)
     {
-        $userModel = UserModel::create($request->json()->all());
-
+        $userModel = $request->json()->all();
+//        var_dump($userModel);
+        $userModel['password'] = md5($userModel['password']);
+        $userModel = UserModel::create($userModel);
         return response()->json($userModel, 201);
     }
 
     public function put($id, Request $request)
     {
         $userModel = UserModel::where('id', '=', $id)->first();
-        $userModel->update($request->json()->all());
+        $newRequest = $request->except(['password']);
+        //$newUserModel = $newRequest->json()->all();
+        $userModel->update($newRequest);
 
         return response()->json($userModel, 200);
     }

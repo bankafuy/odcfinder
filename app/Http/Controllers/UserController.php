@@ -38,7 +38,6 @@ class UserController extends Controller
     public function add(Request $request)
     {
         $userModel = $request->json()->all();
-//        var_dump($userModel);
         $userModel['password'] = md5($userModel['password']);
         $userModel = UserModel::create($userModel);
         return response()->json($userModel, 201);

@@ -78,7 +78,7 @@ class UserController extends Controller
             ->first();
 
         if($userModel == null) {
-            return response()->json('invalid credential', 400);
+            return response()->json('invalid credential', 200);
         } else {
             $userModel['password'] = $newPassword;
             $userModel->save();

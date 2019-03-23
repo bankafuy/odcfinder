@@ -16,7 +16,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/auto', function () use ($router) {
-    return "Coba deploy automatically";
+    return "Coba edit deploy automatically";
 });
 
 $router->post('/login', 'UserController@login');

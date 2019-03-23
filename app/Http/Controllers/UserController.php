@@ -27,7 +27,7 @@ class UserController extends Controller
         if($userModel != null) {
             return response()->json($userModel);
         } else {
-            return response()->json("Data not found", 404);
+            return response()->json("Data not found", 200);
         }
     }
 
@@ -38,7 +38,7 @@ class UserController extends Controller
         if($userModel != null) {
             return response()->json($userModel);
         } else {
-            return response()->json("Data not found", 404);
+            return response()->json("Data not found", 200);
         }
     }
 
@@ -97,7 +97,7 @@ class UserController extends Controller
             ->first();
 
         if($userModel == null) {
-            return response()->json('invalid credential', 400);
+            return response()->json('invalid credential', 200);
         } else {
             return response()->json($userModel, 200);
         }

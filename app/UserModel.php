@@ -6,7 +6,7 @@ class UserModel extends Model {
 
     protected $table = "tb_user";
 
-    protected $fillable = ['username', 'nama', 'level', 'photo', 'password'];
+    protected $fillable = ['username', 'nik', 'nama_lengkap', 'no_hp', 'level', 'photo', 'password'];
 
     protected $hidden = ['password'];
 
